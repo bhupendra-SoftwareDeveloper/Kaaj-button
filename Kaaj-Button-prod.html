@@ -245,7 +245,7 @@
                         Buttonhole Stitching
                     </h3>
                     <p class="text-4xl font-extrabold text-indigo-600 mb-4">
-                        $5
+                        ₹5
                         <span class="text-base font-normal">
                             per buttonhole
                         </span>
@@ -277,7 +277,7 @@
                         Button Stitching
                     </h3>
                     <p class="text-4xl font-extrabold text-indigo-600 mb-4">
-                        $3
+                        ₹3
                         <span class="text-base font-normal">
                             per button
                         </span>
@@ -309,7 +309,7 @@
                         Buttonhole &amp; Button Stitching Combo
                     </h3>
                     <p class="text-4xl font-extrabold text-indigo-600 mb-4">
-                        $7
+                        ₹7
                         <span class="text-base font-normal">
                             per button/buttonhole pair
                         </span>
@@ -409,7 +409,8 @@
                         </label>
                         <input
                             class="w-full border border-gray-300 rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                            id="phone" name="Phone" placeholder="+1 234 567 8900" type="tel" />
+                            id="phone" name="Phone" placeholder="+1 234 567 8900" type="tel"
+                            pattern="^(?:\+?91|0)?[-\s]*[6-9]\d{9}$" required />
                     </div>
 
                     <!-- Service -->
@@ -503,9 +504,19 @@
     <script>
         const menuBtn = document.getElementById("menu-btn");
         const mobileMenu = document.getElementById("mobile-menu");
+        const phoneInput = document.getElementById("phone");
         document.getElementById("year").textContent = new Date().getFullYear();
         menuBtn.addEventListener("click", () => {
             mobileMenu.classList.toggle("hidden");
+        });
+
+        phoneInput.addEventListener("input", () => {
+            const phoneRegex = /^(?:\+?91|0)?[-\s]*[6-9]\d{9}$/;
+            if (!phoneRegex.test(phoneInput.value)) {
+                phoneInput.setCustomValidity("Please enter a valid phone number!");
+            } else {
+                phoneInput.setCustomValidity("");
+            }
         });
 
         // Form submission handling
